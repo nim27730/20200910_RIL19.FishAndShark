@@ -1,0 +1,91 @@
+﻿<Window x:Class="RIL19.FishAndShark.Windows.Application.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:RIL19.FishAndShark.Windows.Application.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel, IsDesignTimeCreatable=False}"
+        mc:Ignorable="d"
+        Title="{Binding Path=WindowTitle}" Height="450" Width="800" MinWidth="425" MinHeight="650">
+    <Grid>
+        <Grid x:Name="MenuLstAquarium" Height="500" Width="400" Margin="25"  Background="White">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="10"
+                                  Opacity="0.5"
+                                  ShadowDepth="4" />
+            </Grid.Effect>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10" Grid.Row="0" Grid.Column="0"  FontSize="16" HorizontalAlignment="Center" TextDecorations="Underline">Aquariums</TextBlock>
+            <ListBox Grid.Column="0" 
+                     Grid.Row="1"
+                     x:Name="LstAquarium" 
+                     Margin="10"
+                     ItemsSource="{Binding Path=Aquariums}" 
+                     SelectedItem="{Binding Path=SelectedAquarium, Mode=TwoWay}" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name }"></TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Column="1" 
+                     Grid.Row="1"
+                     Margin="0,10,10,10"
+                        Orientation="Vertical" >
+                <Button Margin="0,0,0,5" Height="25" Width="50" Click="Refresh_OnClick" >Refresh</Button>
+                <Button Margin="0,0,0,5" Height="25" Width="50" Click="New_OnClick" >New</Button>
+                <Button Margin="0,0,0,5" Height="25" Width="50" Click="Go_OnClick" >Go</Button>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="CreateAquarium" Visibility="Collapsed" Height="250" Width="400" Margin="25"  Background="White">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="10"
+                                  Opacity="0.5"
+                                  ShadowDepth="4" />
+            </Grid.Effect>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="10" Grid.Row="0" Grid.Column="0"  FontSize="16" HorizontalAlignment="Center" TextDecorations="Underline">Nouvel aquarium</TextBlock>
+            <Grid Grid.Row="1" Grid.Column="0" Margin="10" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions >
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Nom :</TextBlock>
+                <TextBox Name="txtName" Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Center" ></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" >Hauteur :</TextBlock>
+                <TextBox Name="txtHeight" Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Center" ></TextBox>
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Largeur :</TextBlock>
+                <TextBox Name="txtWidth"  Grid.Row="2" Grid.Column="1" Height="25" VerticalAlignment="Center" ></TextBox>
+            </Grid>
+            <StackPanel Grid.Column="1" 
+                                      Grid.Row="1"
+                                      Margin="0,10,10,10"
+                                      Orientation="Vertical" >
+                <Button Margin="0,0,0,5" Height="25" Width="50" Click="Create_OnClick" >Ok</Button>
+                <Button Margin="0,0,0,5" Height="25" Width="50" Click="CancelCreate_OnClick" >Cancel</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+    <Grid>
+        
+    </Grid>
+</Window>
